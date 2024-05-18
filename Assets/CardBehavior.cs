@@ -50,7 +50,7 @@ public class CardBehavior : MonoBehaviour
         }
 
         Texture2D texture = Resources.Load($"Deck/{name}") as Texture2D;
-        Sprite newSprite = Sprite.Create(texture, new Rect(0, 0, 1024, 1024), new Vector2(1, 1));
+        Sprite newSprite = Sprite.Create(texture, new Rect(0, 0, 1024, 1024), new Vector2(0.25f, 0.25f));
         renderer.sprite = newSprite;
     }
 }
