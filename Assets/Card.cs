@@ -28,7 +28,7 @@ public class Card
                 return "queen";
             case 13:
                 return "king";
-            case 14:
+            case 1:
                 return "ace";
         }
 

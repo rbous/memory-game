@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 public class Gameboard
 {
-
     public int N, M;
     public Card[,] CardMatrix;
     Card[] _seenCards = new Card[52];
@@ -64,12 +61,12 @@ public class Gameboard
     // Helper function to randomly generate a card value (Card.position == null)
     private Card RandomCard()
     {
-
-        Random rnd = new Random();
-        string[] suits = { "c", "d", "h", "s" };
+        Random rnd = new System.Random();
+        string[] suits = { "clubs", "diamonds", "hearts", "spades" };
 
         int r = rnd.Next() % 13;
         string s = suits[rnd.Next() % 4];
+
         return new Card(r, s);
     }
 }
