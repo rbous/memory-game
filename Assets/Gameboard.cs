@@ -64,7 +64,7 @@ public class Gameboard
     // Helper function to randomly generate a card value (Card.position == null)
     private Card RandomCard()
     {
-        string[] suits = { "c", "d", "h", "s" };
+        string[] suits = { "clubs", "diamonds", "hearts", "spades" };
 
         int r = rnd.Next() % 13;
         string s = suits[rnd.Next() % 4];
