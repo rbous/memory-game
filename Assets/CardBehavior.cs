@@ -6,38 +6,7 @@ using UnityEngine;
 public class CardBehavior : MonoBehaviour
 {
     private SpriteRenderer renderer;
-    
-    public class Card
-    {
-        public string suit;
-        public int number;
-
-        public string NumberToString()
-        {
-            if (number <= 10)
-                return number.ToString();
-
-            switch (number)
-            {
-                case 11:
-                    return "jack";
-                case 12:
-                    return "queen";
-                case 13:
-                    return "king";
-                case 14:
-                    return "ace";
-            }
-
-            throw new Exception("problem");
-        }
-
-        public override string ToString()
-        {
-            return $"{NumberToString()}_of_{suit.ToLower()}";
-        }
-    }
-    
+        
     // Start is called before the first frame update
     void Start()
     {
