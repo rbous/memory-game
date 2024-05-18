@@ -23,6 +23,6 @@ public class Menu : MonoBehaviour
 
     public void changeScene()
     {
-        SceneManager.LoadScene("gameInterface");
+        SceneManager.LoadScene("Game");
     }
 }
