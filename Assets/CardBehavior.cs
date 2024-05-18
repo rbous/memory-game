@@ -4,7 +4,7 @@ public class CardBehavior : MonoBehaviour
 {
     private SpriteRenderer renderer;
     public Card assignedCard;
-    public bool init;
+    public bool Init { get; private set; }
         
     // Start is called before the first frame update
     void Start()
@@ -12,9 +12,26 @@ public class CardBehavior : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
     }
 
+    public void OnClick(CardBehavior card)
+    {
+        if (GameManager.openedCard == null)
+        {
+            GameManager.openedCard = card;
+            return;
+        }
+
+        var card2 = GameManager.openedCard;
+        GameManager.openedCard = null;
+
+        if (card == card2)
+        {
+            // oh em gee
+        }
+    }
+
     public void Initialize(Card card)
     {
-        init = true;
+        Init = true;
         assignedCard = card;
     }
 
@@ -26,7 +43,7 @@ public class CardBehavior : MonoBehaviour
 
     public void ChangeTexture(string name)
     {
-        if (!init)
+        if (!Init)
         {
             Debug.LogError("Attempt to change card texture when not init");
             return;
@@ -35,13 +52,5 @@ public class CardBehavior : MonoBehaviour
         Texture2D texture = Resources.Load($"Deck/{name}") as Texture2D;
         Sprite newSprite = Sprite.Create(texture, new Rect(0, 0, 1024, 1024), new Vector2(1, 1));
         renderer.sprite = newSprite;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-
     }
 }

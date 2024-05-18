@@ -1,30 +1,32 @@
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System.Text;
 
 public class Menu : MonoBehaviour
 {
     public GameObject widthSerialize;
     public GameObject heightSerialize;
-    public static Gameboard Board;
 
     private TMP_InputField width;
     private TMP_InputField height;
-    
+
+    private int n;
+    private int m;
 
     void Start()
     {
+        SceneManager.activeSceneChanged += OnSceneChanged;
         width = widthSerialize.GetComponent<TMP_InputField>();
         height = heightSerialize.GetComponent<TMP_InputField>();
     }
+
 
     public void changeScene()
     {
         // Error Checking
         // Check if n, m are numbers
-        if (!int.TryParse(width.text, out int n) || !int.TryParse(height.text, out int m))
+        if (!int.TryParse(width.text, out n) || !int.TryParse(height.text, out m))
         {
             Debug.Log("err");
             // TODO: add error message
@@ -37,11 +39,22 @@ public class Menu : MonoBehaviour
             // TODO: add error message
             return;
         }
-        
+
+        SceneManager.LoadScene("Game");
         // Testing
-        Board = new(n, m);
-        Print2DArray(Board.CardMatrix);
+
     }
+
+    public void OnSceneChanged(Scene oldScene, Scene newScene)
+    {
+        if (newScene.name == "Game")
+        {
+            GameManager.Board = new(n, m);
+            GameManager.Singleton.SpawnCards();
+            Print2DArray(GameManager.Board.CardMatrix);
+        }
+    }
+
 
     public static void Print2DArray<T>(T[,] matrix)
     {

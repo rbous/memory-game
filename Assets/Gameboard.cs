@@ -3,12 +3,11 @@ using System.Linq;
 
 public class Gameboard
 {
-
     public int N, M;
-    public Card[,] CardMatrix;
     Card[] _seenCards = new Card[52];
     int _seenCount;
     public static Random rnd = new System.Random();
+    public Card[,] CardMatrix;
 
     // Constructor
     public Gameboard(int n, int m)
