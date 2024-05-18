@@ -1,78 +1,78 @@
 using System;
+using System.Linq;
 
-namespace MemoryGame {
 
-    public class Card {
-        int rank;
-        char suit;
+public class Card {
+    public int Rank;
+    public string Suit;
 
-        // Constructor
-        Card(int r, char s) {
-            rank = r;
-            suit = s;
+    // Constructor
+    public Card(int r, string s) {
+        Rank = r;
+        Suit = s;
+    }
+}
+
+
+public class Gameboard {
+
+    public int N, M;
+    public Card[,] CardMatrix;
+    Card[] _seenCards = new Card[52];
+    int _seenCount;
+    
+    // Constructor
+    public Gameboard(int n, int m) {
+        N = n;
+        M = m;
+        _seenCount = 0;
+        CardMatrix = new Card[N, M];
+        GenerateMatrix();
+    }
+
+    // Create all cards
+    void GenerateMatrix() {
+        for (int cardsLeft = N * M / 2; cardsLeft > 0; cardsLeft -= 2) {
+            Card card = CreateCard();
+            int[] pos1 = EmptyPosition();
+            CardMatrix[pos1[0], pos1[1]] = card;
+            int[] pos2 = EmptyPosition();
+            CardMatrix[pos2[0], pos2[1]] = card;
         }
     }
 
-
-    public class Gameboard {
-
-        int n, m;
-        Card[n, m] cardMatrix;
-        Card[] seenCards = new Card[52];
-        int seenCount;
-        
-        // Constructor
-        Gameboard(int i, int j) {
-            n = i;
-            m = j;
-            seenCount = 0;
-            cardMatrix = new Card[n, m];
-            generateMatrix();
-        }
-
-        // Create all cards
-        void generateMatrix() {
-            for (int cardsLeft = n * m / 2; cardsLeft > 0; cardsLeft -= 2) {
-                Card card = createCard();
-                int[2] pos1 = emptyPosition();
-                cardMatrix[pos1[0], pos1[1]] = card;
-                int[2] pos2 = emptyPosition();
-                cardMatrix[pos2[0], pos2[1]] = card;
-            }
-        }
-
-        // Helper function to find an empty position
-        private int[2] emptyPosition() {
-            int[2] pos;
-            do {
-                Random rnd = new Random();
-                pos[0] = rnd.Next() % n;
-                pos[1] = rnd.Next() % m;
-            } while (cardMatrix[pos[0], pos[1]] == null);
-            return pos;
-        }
-
-        // Helper function to create a card that was not seen yet
-        private Card createCard() {
-            do {
-                Card card = randomCard();
-            } while (seenCards.Contains(card));
-            seenCards[seenCount] = card;
-            seenCount++;
-            return card;
-        }
-
-        // Helper function to randomly generate a card value (Card.position == null)
-        private Card randomCard() {
-
-            Card card = new Card();
+    // Helper function to find an empty position
+    private int[] EmptyPosition() {
+        int[] pos = new int[2];
+        do {
             Random rnd = new Random();
-            char[] suits = {'c', 'd', 'h', 's'};
+            pos[0] = rnd.Next() % N;
+            pos[1] = rnd.Next() % M;
+        } while (CardMatrix[pos[0], pos[1]] == null);
+        return pos;
+    }
 
-            card.rank = rnd.Next() % 13;
-            card.suit = suits[rnd.Next() % 4];
-            return card;
-        }
+    // Helper function to create a card that was not seen yet
+    private Card CreateCard()
+    {
+        Card card;
+        do {
+            card = RandomCard();
+        } while (_seenCards.Contains(card));
+        _seenCards[_seenCount] = card;
+        _seenCount++;
+        return card;
+    }
+
+    // Helper function to randomly generate a card value (Card.position == null)
+    private Card RandomCard() {
+
+        Random rnd = new Random();
+        string[] suits = {"c", "d", "h", "s"};
+
+        int r = rnd.Next() % 13;
+        string s = suits[rnd.Next() % 4];
+        return new Card(r, s);
     }
 }
 
