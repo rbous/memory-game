@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Unity.VisualScripting;
 
 public class Card
 {
@@ -39,4 +38,11 @@ public class Card
     {
         return $"{NumberToString()}_of_{Suit.ToLower()}";
     }
+
+    public static bool operator ==(Card a, Card b)
+        => a.Suit == b.Suit && a.Rank == b.Rank;
+
+
+    public static bool operator !=(Card a, Card b)
+        => a.Suit != b.Suit || a.Rank != b.Rank;
 }

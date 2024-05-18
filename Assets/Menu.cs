@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Text;
 
 public class Menu : MonoBehaviour
 {
@@ -39,6 +40,21 @@ public class Menu : MonoBehaviour
         
         // Testing
         Board = new(n, m);
-        Debug.Log(Board.CardMatrix.ToString());
+        Print2DArray(Board.CardMatrix);
+    }
+
+    public static void Print2DArray<T>(T[,] matrix)
+    {
+        StringBuilder builder = new();
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                builder.Append(matrix[i, j] + "\t");
+            }
+            builder.AppendLine();
+        }
+
+        Debug.Log(builder.ToString());
     }
 }
