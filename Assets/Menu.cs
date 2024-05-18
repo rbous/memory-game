@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Menu : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject widthSerialize;
+    public GameObject heightSerialize;
+
+    private TMP_InputField width;
+    private TMP_InputField height;
+
     void Start()
     {
-        
+        width = widthSerialize.GetComponent<TMP_InputField>();
+        height = heightSerialize.GetComponent<TMP_InputField>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
     }
 }
