@@ -41,8 +41,6 @@ public class Menu : MonoBehaviour
         }
 
         SceneManager.LoadScene("Game");
-        // Testing
-
     }
 
     public void OnSceneChanged(Scene oldScene, Scene newScene)
