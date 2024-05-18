@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Menu : MonoBehaviour
 {
@@ -19,10 +20,6 @@ public class Menu : MonoBehaviour
         height = heightSerialize.GetComponent<TMP_InputField>();
     }
 
-    void Update()
-    {
-    }
-    
     public void changeScene(int id)
     {
         SceneManager.LoadScene(id);
