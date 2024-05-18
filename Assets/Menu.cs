@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -21,5 +21,10 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
+    }
+    
+    public void changeScene(int id)
+    {
+        SceneManager.LoadScene(id);
     }
 }
