@@ -11,6 +11,7 @@ public class Gameboard
     public Card[,] CardMatrix;
     Card[] _seenCards = new Card[52];
     int _seenCount;
+    public static Random rnd = new System.Random();
 
     // Constructor
     public Gameboard(int n, int m)
@@ -41,10 +42,9 @@ public class Gameboard
         int[] pos = new int[2];
         do
         {
-            Random rnd = new Random();
             pos[0] = rnd.Next() % N;
             pos[1] = rnd.Next() % M;
-        } while (CardMatrix[pos[0], pos[1]] == null);
+        } while (CardMatrix[pos[0], pos[1]] != null);
         return pos;
     }
 
@@ -64,8 +64,6 @@ public class Gameboard
     // Helper function to randomly generate a card value (Card.position == null)
     private Card RandomCard()
     {
-
-        Random rnd = new Random();
         string[] suits = { "c", "d", "h", "s" };
 
         int r = rnd.Next() % 13;
