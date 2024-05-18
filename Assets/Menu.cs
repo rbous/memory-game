@@ -13,15 +13,19 @@ public class Menu : MonoBehaviour
 
     private TMP_InputField width;
     private TMP_InputField height;
+    
 
     void Start()
     {
         width = widthSerialize.GetComponent<TMP_InputField>();
         height = heightSerialize.GetComponent<TMP_InputField>();
+
+        string widthText = width.text;
+        string heightText = height.text;
     }
 
-    public void changeScene(int id)
+    public void changeScene()
     {
-        SceneManager.LoadScene(id);
+        SceneManager.LoadScene("gameInterface");
     }
 }
