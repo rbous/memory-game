@@ -38,8 +38,8 @@ public class Gameboard
         int[] pos = new int[2];
         do
         {
-            pos[0] = rnd.Next() % N;
-            pos[1] = rnd.Next() % M;
+            pos[0] = rnd.Next(0, N);
+            pos[1] = rnd.Next(0, M);
         } while (CardMatrix[pos[0], pos[1]] != null);
         return pos;
     }
