@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,10 +13,26 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Singleton = this;
+        SceneManager.sceneLoaded += OnSceneChanged;
+        Spawn();
+
         Debug.Log("awake");
         Debug.Log("awake2");
-        Singleton = this;
         sprite = template.GetComponent<SpriteRenderer>();
+    }
+
+    public void OnSceneChanged(Scene newScene, LoadSceneMode mode)
+    {
+        Debug.Log("scene changed");
+        if (newScene.name == "Game")
+            Spawn();
+    }
+
+    public void Spawn()
+    {
+        Board = new(Menu.n, Menu.m);
+        Singleton.SpawnCards();
     }
 
     public void SpawnCards()
@@ -31,6 +48,7 @@ public class GameManager : MonoBehaviour
             {
                 var newCard = Instantiate(template);
                 var component = newCard.GetComponent<CardBehavior>();
+                Debug.Log($"{Board.CardMatrix[i, j]} - ({i}, {j})");
                 component.Initialize(Board.CardMatrix[i, j]);
                 component.Show();
 

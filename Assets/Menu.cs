@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -11,16 +12,14 @@ public class Menu : MonoBehaviour
     private TMP_InputField width;
     private TMP_InputField height;
 
-    private int n;
-    private int m;
+    public static int n;
+    public static int m;
 
     void Start()
     {
-        SceneManager.activeSceneChanged += OnSceneChanged;
         width = widthSerialize.GetComponent<TMP_InputField>();
         height = heightSerialize.GetComponent<TMP_InputField>();
     }
-
 
     public void changeScene()
     {
@@ -42,17 +41,6 @@ public class Menu : MonoBehaviour
 
         SceneManager.LoadScene("Game");
     }
-
-    public void OnSceneChanged(Scene oldScene, Scene newScene)
-    {
-        if (newScene.name == "Game")
-        {
-            GameManager.Board = new(n, m);
-            GameManager.Singleton.SpawnCards();
-            Print2DArray(GameManager.Board.CardMatrix);
-        }
-    }
-
 
     public static void Print2DArray<T>(T[,] matrix)
     {
