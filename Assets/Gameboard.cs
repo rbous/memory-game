@@ -51,7 +51,7 @@ public class Gameboard
         do
         {
             card = RandomCard();
-        } while (_seenCards.Contains(card));
+        } while (_seenCards.Any(x => x == card));
         _seenCards[_seenCount] = card;
         _seenCount++;
         return card;

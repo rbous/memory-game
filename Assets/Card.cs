@@ -43,4 +43,25 @@ public class Card
 
         return text;
     }
+
+    /// <summary>
+    /// fanum taxes
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    public static bool operator ==(Card a, Card b)
+    {
+        // Check if both are null
+        if (a is null && b is null) return true;
+
+        // Check if one is null
+        if (a is null || b is null) return false;
+
+        // Compare the fields
+        return a.Rank == b.Rank && a.Suit == b.Suit;
+    }
+
+    public static bool operator !=(Card a, Card b)
+        => !(a == b);
 }

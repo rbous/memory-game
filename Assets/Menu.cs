@@ -8,6 +8,8 @@ public class Menu : MonoBehaviour
 {
     public GameObject widthSerialize;
     public GameObject heightSerialize;
+    public GameObject errorPanel;
+    public GameObject errorMessage;
 
     private TMP_InputField width;
     private TMP_InputField height;
@@ -19,23 +21,26 @@ public class Menu : MonoBehaviour
     {
         width = widthSerialize.GetComponent<TMP_InputField>();
         height = heightSerialize.GetComponent<TMP_InputField>();
+        errorPanel.SetActive(false);
     }
 
     public void changeScene()
     {
-        // Error Checking
-        // Check if n, m are numbers
-        if (!int.TryParse(width.text, out n) || !int.TryParse(height.text, out m))
+        if (!int.TryParse(width.text, out n) || !int.TryParse(height.text, out m) || n <= 0 || m <= 0)
         {
-            Debug.Log("err");
-            // TODO: add error message
+            OpenErrorPanel("Please enter valid numbers for height & width (non-decimal/non-negative.)");
             return;
         }
-        // Check if there is an even number of cards
+
+        if (n > 13 || m > 4)
+        {
+            OpenErrorPanel("Maximum numbers passed for width/height\n\nWidth: 13\nHeight: 4");
+            return;
+        }
+
         if ((n * m) % 2 != 0)
         {
-            Debug.Log("err");
-            // TODO: add error message
+            OpenErrorPanel("Total number of cards must be even.");
             return;
         }
 
@@ -55,5 +60,16 @@ public class Menu : MonoBehaviour
         }
 
         Debug.Log(builder.ToString());
+    }
+
+    public void OpenErrorPanel(string message)
+    {
+        errorPanel.SetActive(true);
+        errorMessage.GetComponent<TMP_Text>().text = message;
+    }
+
+    public void CloseErrorPanel()
+    {
+        errorPanel.SetActive(false);
     }
 }
