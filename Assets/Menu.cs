@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
     public GameObject heightSerialize;
     public GameObject errorPanel;
     public GameObject errorMessage;
+    public TMP_Text errorTitle;
 
     private TMP_InputField width;
     private TMP_InputField height;
@@ -62,14 +63,27 @@ public class Menu : MonoBehaviour
         Debug.Log(builder.ToString());
     }
 
-    public void OpenErrorPanel(string message)
+    public void OpenErrorPanel(string message, string title = "Error")
     {
         errorPanel.SetActive(true);
         errorMessage.GetComponent<TMP_Text>().text = message;
+        errorTitle.text = title;
     }
 
     public void CloseErrorPanel()
+        => errorPanel.SetActive(false);
+
+    public void ProcessOk()
     {
-        errorPanel.SetActive(false);
+        if (errorTitle.text != "Error")
+        {
+            Application.Quit(0);
+            return;
+        }
+
+        CloseErrorPanel();
     }
+
+    public void CloseGame()
+        => OpenErrorPanel("Are you sure you want to close the game?", "Confirm");
 }
