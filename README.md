@@ -16,4 +16,4 @@ start ./memory-game/memory-game.exe
 ### Manual Installation
 Download the zip file of the latest release [here](https://github.com/rbous/memory-game/releases/latest), then extract the contents.
 
-Run memory-game.exe to launch the game
+Run `memory-game.exe` to launch the game
