@@ -16,7 +16,7 @@ public class Card
 
     public string NumberToString()
     {
-        if (Rank <= 10)
+        if (Rank <= 10 && Rank != 1)
             return Rank.ToString();
 
         switch (Rank)
@@ -36,10 +36,9 @@ public class Card
 
     public override string ToString()
     {
-        var number = NumberToString();
-        var text = $"{number}_of_{Suit.ToLower()}";
+        var text = $"{NumberToString()}_of_{Suit.ToLower()}";
 
-        if (number == Rank.ToString())
+        if (Rank > 10)
             text += "2";
 
         return text;

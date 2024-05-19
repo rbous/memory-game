@@ -6,6 +6,11 @@ public class CardBehavior : MonoBehaviour
     public Card assignedCard;
     public bool Init { get; private set; }
 
+    public void Start()
+    {
+        
+    }
+
     public void OnClick(CardBehavior card)
     {
         if (GameManager.openedCard == null)
@@ -46,7 +51,6 @@ public class CardBehavior : MonoBehaviour
         if (renderer == null)
             renderer = gameObject.GetComponent<SpriteRenderer>();
 
-        Debug.Log(renderer == null);
         Texture2D texture = Resources.Load<Texture2D>($"Deck/{name}");
         Sprite newSprite = Sprite.Create(texture, new Rect(0, 0, 500, 726), new Vector2(0.25f, 0.25f));
         renderer.sprite = newSprite;
