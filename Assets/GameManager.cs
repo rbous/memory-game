@@ -20,19 +20,30 @@ public class GameManager : MonoBehaviour
 
     public void SpawnCards()
     {
-        foreach (var card in Board.CardMatrix)
-        {
-            var newCard = Instantiate(template);
-            var component = newCard.GetComponent<CardBehavior>();
-            component.Initialize(card);
-            //todo: set newCard pos
-            component.Show();
-        }
-    }
+        const int width = 23;
+        const int height = 10;
+        float xDiff = (float)width / (Board.N + 1);
+        float yDiff = (float)height / (Board.M + 1);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        for (int i = 0; i < Board.N; i++)
+        {
+            for (int j = 0; j < Board.M; j++)
+            {
+                var newCard = Instantiate(template);
+                var component = newCard.GetComponent<CardBehavior>();
+                component.Initialize(Board.CardMatrix[i, j]);
+                component.Show();
+
+                float x = (float)-23 / 2 + xDiff * (i + 1);
+                float y = -5 + yDiff * (j + 1);
+                newCard.transform.position = new Vector3(x, y, 0);
+            }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }
