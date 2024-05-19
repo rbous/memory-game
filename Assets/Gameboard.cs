@@ -22,7 +22,7 @@ public class Gameboard
     // Create all cards
     void GenerateMatrix()
     {
-        for (int cardsLeft = N * M / 2; cardsLeft > 0; cardsLeft -= 2)
+        for (int cardsLeft = N * M / 2; cardsLeft > 0; cardsLeft--)
         {
             Card card = CreateCard();
             int[] pos1 = EmptyPosition();

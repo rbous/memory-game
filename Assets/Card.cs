@@ -36,6 +36,12 @@ public class Card
 
     public override string ToString()
     {
-        return $"{NumberToString()}_of_{Suit.ToLower()}";
+        var number = NumberToString();
+        var text = $"{number}_of_{Suit.ToLower()}";
+
+        if (number == Rank.ToString())
+            text += "2";
+
+        return text;
     }
 }

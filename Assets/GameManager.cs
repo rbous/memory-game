@@ -46,15 +46,16 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < Board.M; j++)
             {
-                var newCard = Instantiate(template);
-                var component = newCard.GetComponent<CardBehavior>();
                 Debug.Log($"{Board.CardMatrix[i, j]} - ({i}, {j})");
+
+                /*var newCard = Instantiate(template);
+                var component = newCard.GetComponent<CardBehavior>();
                 component.Initialize(Board.CardMatrix[i, j]);
                 component.Show();
 
                 float x = (float)-23 / 2 + xDiff * (i + 1);
                 float y = -5 + yDiff * (j + 1);
-                newCard.transform.position = new Vector3(x, y, 0);
+                newCard.transform.position = new Vector3(x, y, 0);*/
             }
         }
 
