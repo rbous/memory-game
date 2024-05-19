@@ -16,9 +16,6 @@ public class GameManager : MonoBehaviour
         Singleton = this;
         SceneManager.sceneLoaded += OnSceneChanged;
         Spawn();
-
-        Debug.Log("awake");
-        Debug.Log("awake2");
         sprite = template.GetComponent<SpriteRenderer>();
     }
 
@@ -46,23 +43,17 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < Board.M; j++)
             {
-                Debug.Log($"{Board.CardMatrix[i, j]} - ({i}, {j})");
+                //Debug.Log($"{Board.CardMatrix[i, j]} - ({i}, {j})");
 
-                /*var newCard = Instantiate(template);
+                var newCard = Instantiate(template);
                 var component = newCard.GetComponent<CardBehavior>();
                 component.Initialize(Board.CardMatrix[i, j]);
                 component.Show();
 
                 float x = (float)-23 / 2 + xDiff * (i + 1);
                 float y = -5 + yDiff * (j + 1);
-                newCard.transform.position = new Vector3(x, y, 0);*/
+                newCard.transform.position = new Vector3(x, y, 0);
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }
