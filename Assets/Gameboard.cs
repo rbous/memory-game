@@ -62,8 +62,8 @@ public class Gameboard
     {
         string[] suits = { "clubs", "diamonds", "hearts", "spades" };
 
-        int r = rnd.Next() % 13;
-        string s = suits[rnd.Next() % 4];
+        int r = rnd.Next(1, 14);
+        string s = suits[rnd.Next(0, 4)];
         return new Card(r, s);
     }
 }
