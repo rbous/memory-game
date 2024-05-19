@@ -77,15 +77,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Update()
-    {
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.K))
-        {
-            foreach (var card in cards)
-                card.Show();
-        }
-    }
-
     public void GoBack()
         => OpenMessage("Return Menu", "Go back to the menu and lose all progress?");
 
