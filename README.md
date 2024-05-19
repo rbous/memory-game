@@ -5,7 +5,7 @@ A simple card memory game created with C# and Unity.
 This game is currently only supported on Windows.
 
 ### Command Line Installation
-This installation is only supported on Windows 10 or later
+> This installation is only supported on Windows 10 or later
 ```sh
 curl -sL github.com/rbous/memory-game/releases/latest/download/memory-game.zip -O
 powershell -command "Expand-Archive -Force 'memory-game.zip' 'memory-game'"
